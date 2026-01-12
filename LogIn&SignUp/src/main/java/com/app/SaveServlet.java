@@ -48,7 +48,7 @@ public class SaveServlet extends HttpServlet {
 		if(success) {
 			resp.sendRedirect("index.jsp");
 		}else {
-			resp.sendRedirect("error.jsp");
+			resp.sendRedirect("errorPage.jsp");
 		}
 	}
 	
