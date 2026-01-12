@@ -45,6 +45,7 @@
 	<div class="login">
 		<form action="login" method="post">
 			<h1>Welcome Back!</h1>
+
 			<h2>Log in to your account</h2>
 			<input type="email" id="username" name="email" placeholder="Enter Email"><br><br>
 			<input type="password" id="password" name="password" placeholder="Enter Password"><br>
