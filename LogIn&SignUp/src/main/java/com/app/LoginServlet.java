@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -18,6 +19,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+    	HttpSession oldSession = req.getSession(false);
+		if (oldSession != null) {
+		    oldSession.invalidate();
+		}
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
@@ -25,10 +30,14 @@ public class LoginServlet extends HttpServlet {
         User user = dao.loginUser(email, password);
 
         if (user != null) {
-            req.getSession().setAttribute("user", user);
-            resp.sendRedirect("signuppage.jsp");
+            
+            req.getSession().setAttribute("userId", user.getId());
+            resp.sendRedirect("dashboard");
         } else {
-            resp.sendRedirect("login.jsp?error=invalid");
+            resp.sendRedirect("errorPage.jsp?error=invalid");
         }
     }
 }
+
+}
+
