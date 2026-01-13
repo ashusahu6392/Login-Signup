@@ -14,6 +14,8 @@
 <title>UserDashboard</title>
 
 <link rel="stylesheet" href="css/dashboard.css">
+<!-- ✅ Icons CDN (for sidebar icons like in image) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 
 </head>
@@ -22,21 +24,39 @@
 <div class="container">
 	<div class="side-bar">
 	
-		<div class="user">
-			<img alt="avatar" src="images/avatar.png">
-			<h1><%= user.getFname()+ " " + user.getLname() %></h1>
-			<h5>Admin</h5>
-		</div>
+		 <div class="user">
+            <img alt="avatar"
+                 src="<%= (user.getProfileImage() != null && !user.getProfileImage().isEmpty())
+                            ? "uploads/" + user.getProfileImage()
+                            : "images/avatar.png" %>">
+            <h1><%= user.getFname() + " " + user.getLname() %></h1>
+            <h5>Admin</h5>
+        </div>
 		
 		<ul class="menu">
-			<li><a>Dashboard</a></li>
-			<li><a>Analytics</a></li>
-			<li><a>Messages</a></li>
-			<li><a>Projects</a></li>
-			<li><a>Tasks</a></li>
-			<li><a>Setting</a></li>
-			<li><a href="editUser.jsp">Edit Profile</a></li>
-		</ul>
+            <li>
+                <a href="dashboard">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- ✅ active menu -->
+            <li class="active">
+                <a href="editServlet">
+                    <i class="fa-solid fa-user-pen"></i>
+                    <span>Edit Profile</span>
+                </a>
+            </li>
+            
+             <li class="active">
+                <a href="editServlet">
+                   <i class="ri-bar-chart-grouped-line"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+            
+        </ul>
 		
 		<form action="logoutServlet" method="post">
 			<button class="logout">Logout</button>
