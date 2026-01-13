@@ -20,14 +20,16 @@ public class User {
 	private String gender;
 	private String dob;
 	private String terms;
+	private String profileImage;
 	
 	
 	
 	public User() {
 		super();
 	}
+	
 	public User(int id, String fname, String lname, String email, String password, String gender, String dob,
-			String terms) {
+			String terms, String profileImage) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -37,6 +39,14 @@ public class User {
 		this.gender = gender;
 		this.dob = dob;
 		this.terms = terms;
+		this.profileImage = profileImage;
+	}
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getFname() {
 		return fname;
@@ -79,7 +89,16 @@ public class User {
 	}
 	public void setTerms(String terms) {
 		this.terms = terms;
+	}
+
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	} 
+	
 	
 	
 	
