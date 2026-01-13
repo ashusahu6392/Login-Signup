@@ -1,4 +1,3 @@
-
 package com.app;
 
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class DashboardServlet extends HttpServlet {
 
 	        if (user == null) {
 	            session.invalidate();
-	            resp.sendRedirect("login.jsp");
+	            resp.sendRedirect("index.jsp");
 	            return;
 	        }
 
