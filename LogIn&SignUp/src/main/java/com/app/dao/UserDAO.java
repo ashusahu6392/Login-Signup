@@ -45,5 +45,72 @@ public class UserDAO {
 
 	        return user;
 	    }
+	 
+	 public User findById(int id) {
+		    Session session = HibernateUtil.getSessionFactory().openSession();
+		    User user = session.find(User.class, id);
+		    session.close();
+		    return user;
+		}
+	 
+	 public boolean updateUser(User user) {
+		 Transaction tx = null;
+		 
+		 try(Session session = HibernateUtil.getSessionFactory().openSession()){
+				tx = session.beginTransaction();
+				
+				session.merge(user);
+				tx.commit();
+				return true;
+				
+			}catch (Exception e) {
+				// TODO: handle exception
+				if(tx != null) tx.rollback();
+				e.printStackTrace();
+				return false;
+			}
+	 }
+	 
+	 public boolean updateProfileImage(int id, String imageName) {
+		    boolean status = false;
+
+		    Transaction tx = null;
+
+		    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+		        tx = session.beginTransaction();
+
+		        User user = session.find(User.class, id);
+
+		        if (user != null) {
+		            user.setProfileImage(imageName);
+		            session.merge(user);
+		            status = true;
+		        }
+
+		        tx.commit();
+
+		    } catch (Exception e) {
+		        if (tx != null) tx.rollback();
+		        e.printStackTrace();
+		    }
+
+		    return status;
+		}
+
+	 
+	 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
